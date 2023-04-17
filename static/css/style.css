@@ -87,18 +87,29 @@ img {
 	max-width: 100%;
 }
 
+
+
 input:focus,
 select:focus,
 button:focus,
 textarea:focus {
 	outline: none;
 }
+ #bg-breadcrumb{
+	background-size:cover;
+	/* background-repeat: repeat-x; */
 
+	/*width: 100%;
+	height: 30%;
+
+
+} 
+a{text-decoration-line: none;}
 a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #ffffff;
+	/* color: #ffffff; */
 }
 
 ul,
@@ -134,11 +145,12 @@ ol {
 	margin: 0 auto;
 }
 
-.set-bg {
+ .set-bg {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: top center;
-}
+
+} 
 
 .spad {
 	padding-top: 100px;

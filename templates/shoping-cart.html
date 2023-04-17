@@ -1,22 +1,26 @@
-
 {% extends 'base.html' %}
-
 {% load static %}
+
+
 
 
 {% block content %}
 
 
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="{% static "img/breadcrumb.jpg" %}">
+
+<body>
+
+
+    <!-- Breadcrumb Section Begin  class="breadcrumb__option"-->
+    <section class="breadcrumb-section set-bg" data-setbg="{% static 'img/banner/new1.jpg' %}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Shopping Cart</h2>
-                        <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Shopping Cart</span>
+                        <h2 style="color:rgb(233, 247, 239);text-shadow: 0px 0px 2px black;">Shopping Cart</h2>
+                        <div >
+                            <a href="static/templates/shop-grid.html" style="text-decoration-line: none;color:rgb(233, 247, 239);text-shadow: 0px 0px 2px black;font-weight: bold;">Home</a>
+                            <!-- <span style="color:rgb(3, 3, 94);">Shopping Cart</span> -->
                         </div>
                     </div>
                 </div>
@@ -54,15 +58,15 @@
                                         <td class="shoping__cart__quantity">
                                             <form action="update/{{c.product.id}}" method="post">
                                                 {% csrf_token %}
-                                                <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1">
-                                                <button type="submit">Update</button>
+                                                <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1" style="width: 50px;">
+                                                <button type="submit">Add</button>
                                             </form>
                                         </td>
                                         <td class="shoping__cart__total" id="tot" data-price="{{c.price}}">
                                             {{c.price}}
                                         </td>
                                         <td class="shoping__cart__item__close">
-                                            <a href="remove/{{c.product.id}}">Remove</a>
+                                            <a href="remove/{{c.product.id}}" style="text-decoration-line: none;">Remove</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -75,8 +79,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="{% url 'index' %}" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                        <a href="{% url 'index' %}" class="primary-btn cart-btn" style="text-decoration-line: none;">CONTINUE SHOPPING</a>
+                        <a href="#" class="primary-btn cart-btn cart-btn-right" style="text-decoration-line: none;"><span class="icon_loading"></span>
                             Upadate Cart</a>
                     </div>
                 </div>
@@ -87,7 +91,7 @@
                             <li>Subtotal <span>{{cart_total}}</span></li>
                             <li>Total <span>{{cart_total_tax}}</span></li>
                         </ul>
-                        <a href="{% url "checkout" %}" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="{% url "checkout" %}" class="primary-btn" style="text-decoration-line: none;">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
