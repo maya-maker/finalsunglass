@@ -95,11 +95,31 @@ def chekout(request):
         return redirect('cart')
     
 
-def payment_done(request):
-    if request.method == "POST":
-        razorpay_payment_id = request.POST.get('razorpay_payment_id')
-        print(razorpay_payment_id)
-        client = razorpay.Client(auth=(RAZORPAY_API_KEY, RAZORPAY_API_SECRET_KEY))
-        payment = client.payment.fetch(razorpay_payment_id)
-        # Handle the payment details as required
-        return HttpResponse("pay")
+from django.shortcuts import render
+
+import razorpay
+
+def process_payment(request):
+    if request.method == 'POST':
+        amount = int(request.POST['amount'])
+        currency = request.POST['currency']
+        description = request.POST['description']
+        razorpay_payment_id = request.POST.get('razorpay_payment_id', '')
+        razorpay_order_id = request.POST.get('razorpay_order_id', '')
+        razorpay_signature = request.POST.get('razorpay_signature', '')
+
+        client = razorpay.Client(auth=('rzp_test_kBbQcl4dSYVjJU', 'JEuy4bjdZk5jynAECBapOzem'))
+        params_dict = {
+            'razorpay_order_id': razorpay_order_id,
+            'razorpay_payment_id': razorpay_payment_id,
+            'razorpay_signature': razorpay_signature
+        }
+
+        try:
+            client.utility.verify_payment_signature(params_dict)
+            # Payment is successful, update order status in your database
+            return render(request, 'payment_success.html')
+        except:
+            # Payment verification failed, handle the error
+            return render(request, 'payment_failure.html')
+

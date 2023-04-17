@@ -216,6 +216,46 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
+<<<<<<< HEAD
+                                        
+                                        <a href="javascript:void(0)" onclick="openRazorpay()"><span>Pay with Razorpay</span></a>
+
+                                        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                                        <script>
+                                            var options = {
+                                                "key": "rzp_test_kBbQcl4dSYVjJU",
+                                                "amount": "{{ total }}00",
+                                                "currency": "INR",
+                                                "name": "Your Company Name",
+                                                "description": "Payment for Order #1234",
+                                                "image": "https://your-company-logo.com/your_logo.png",
+                                                "prefill": {
+                                                    "name": "{{ user.first_name }} {{ user.last_name }}",
+                                                    "email": "{{ user.email }}",
+                                                    "contact": "{{ user.phone_number }}"
+                                                },
+                                                "theme": {
+                                                    "color": "#F37254"
+                                                },
+                                                "handler": function(response) {
+                                                    // handle Razorpay payment success
+                                                    console.log(response);
+                                                    window.location.href = "{% url 'process_payment' %}" + "?razorpay_payment_id=" + response.razorpay_payment_id + "&razorpay_order_id=" + response.razorpay_order_id + "&razorpay_signature=" + response.razorpay_signature;
+                                                },
+                                                "prefill": {
+                                                    "name": "{{ user.first_name }} {{ user.last_name }}",
+                                                    "email": "{{ user.email }}",
+                                                    "contact": "{{ user.phone_number }}"
+                                                }
+                                            };
+                                            var rzp1 = new Razorpay(options);
+
+                                            function openRazorpay() {
+                                                rzp1.open();
+                                            }
+                                        </script>
+=======
+>>>>>>> ed294f50ffd212c75c490207ff3a8f9a338124f4
                             </div>
                         </div>
                     </div>
@@ -256,51 +296,7 @@
                }
              }
            }
-       </script>
-       <script src="https://checkout.razorpay.com/v1/checkout.js"
-       data-key="rzp_test_kBbQcl4dSYVjJU"
-       data-amount="{{cart_total_tax}}"
-       data-currency="INR"
-       data-name="Sharma Optics"
-       data-description="{{ product_description }}"
-       data-image="{{ company_logo_url }}"
-       data-prefill.name="{{ user_name }}"
-       data-prefill.email="{{ user_email }}"
-       data-theme.color="#F37254"
-       ></script>
-
-       {% comment %} <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-                                    <script>
-                                    var options = {
-                                        "key": "{{api_key}}", // Enter the Key ID generated from the Dashboard
-                                        "amount": "{{amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-                                        "currency": "INR",
-                                        "name": "Acme Corp", //your business name
-                                        "description": "Test Transaction",
-                                        "image": "https://example.com/your_logo",
-                                        "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-                                        "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
-                                        "prefill": {
-                                            "name": "Gaurav Kumar", //your customer's name
-                                            "email": "gaurav.kumar@example.com",
-                                            "contact": "9000090000"
-                                        },
-                                        "notes": {
-                                            "address": "Razorpay Corporate Office"
-                                        },
-                                        "theme": {
-                                            "color": "#3399cc"
-                                        }
-                                    };
-                                    var rzp1 = new Razorpay(options);
-                                    document.getElementById('rzp-button1').onclick = function(e){
-                                        rzp1.open();
-                                        e.preventDefault();
-                                    }
-                                    </script> {% endcomment %}
-   
- 
-
+       </script> 
 </body>
 
 </html>
